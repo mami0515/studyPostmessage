@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Yahoo!</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+</head>
+<body>
+<iframe src="http://design.settle.cre.ssk.ynwm.yahoo.co.jp/users/maoda/postmessage/child.html" id="child"></iframe>
+<p><input type="text" id="name" value=""></p>
+<p><input type="text" id="age" value=""></p>
+<p><input type="text" id="address" value=""></p>
+<script type="text/javascript">
+window.addEventListener("message", function(e){
+  var res = JSON.parse(e.data);
+  console.log(res.name);
+  document.getElementById("name").value = res.name;
+  document.getElementById("age").value = res.age;
+  document.getElementById("address").value = res.address;
+//  alert(res.name);
+});
+document.getElementById("child").addEventListener("load", function(e){
+  document.getElementById("child").contentWindow.postMessage('{"name":"maoda","age":"20","address":"roppongi"}', 'http://design.settle.cre.ssk.ynwm.yahoo.co.jp');
+});
+</script>
+</body>
+</html>

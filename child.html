@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Yahoo!</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+</head>
+<body>
+<p>ここはiframeの中です。</p>
+<a href="#" id="btn">post message</a>
+
+<script type="text/javascript">
+var a = 123;
+console.log(a);
+
+window.addEventListener("message", function(e){
+  var res = JSON.parse(e.data);
+  alert(res.name + "さんは" + res.age + "歳ではない。" + res.address + "勤務です。");
+});
+document.getElementById("btn").addEventListener("click", function(e){
+  e.preventDefault();
+  parent.postMessage('{"name":"maoda","age":"30","address":"shinjyuku"}', 'http://design01.login.ssk.ynwm.yahoo.co.jp/');
+});
+</script>
+</body>
+</html>
